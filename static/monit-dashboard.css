@@ -1,8 +1,8 @@
 .server-link a {
-                color: #fff;
-                text-decoration: none;
-                text-transform: uppercase;
-                text-decoration: underline;
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    text-decoration: underline;
 }
 
 th {
@@ -16,57 +16,57 @@ td {
 }
 
 body {
-      font-family: arial;
+    font-family: arial;
 }
 
 tr:nth-child(odd) {
-                   background-color:#fff;
+    background-color: #fff;
 }
 
 tr:nth-child(even) {
-                    background-color:#f2f2f2;
+    background-color: #f2f2f2;
 }
 
 a {
-   color: #cb0017;
-   font-weight: bolder;
+    color: #cb0017;
+    font-weight: bolder;
 }
 
 button.accordion {
-                  color: #444;
-                  cursor: pointer;
-                  padding: 18px;
-                  width: 100%;
-                  text-align: left;
-                  border: none;
-                  outline: none;
-                  transition: 0.4s;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    outline: none;
+    transition: 0.4s;
 }
 
 div.panel {
-           padding: 0 18px;
-           background-color: white;
-           display: none;
+    padding: 0 18px;
+    background-color: white;
+    display: none;
 }
 
 div.panel.show {
-                display: block;
+    display: block;
 }
 
 .green {
-        background-color: #79bd8f;
-        font-size: 20px;
+    background-color: #79bd8f;
+    font-size: 20px;
 }
 
 .green:hover {
-              background-color: #588a68;
+    background-color: #588a68;
 }
 
 .red {
-      background-color: #d9534f;
-      font-size: 20px;
+    background-color: #d9534f;
+    font-size: 20px;
 }
 
 .red:hover {
-            background-color: #c9302c;
+    background-color: #c9302c;
 }

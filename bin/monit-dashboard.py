@@ -1,23 +1,28 @@
 #!/usr/bin/python
 
 import web
-import requests, xmltodict, json, os, sys
+import requests
+import xmltodict
+import json
+import os
+import sys
 import datetime
 
 urls = ('/', 'index',
         '/help', 'help'
-)
+        )
 
 app = web.application(urls, globals())
 render = web.template.render('templates/', base="layout")
 
-## Uncomment to turn debug off
+# Uncomment to turn debug off
 web.config.debug = False
 
-## Variables
+# Variables
 output = []
 
-## Functions
+# Functions
+
 
 def getMonit():
     output = []
@@ -30,7 +35,8 @@ def getMonit():
 
         for site in cf:
             s = cf[site]
-            r = requests.get(s['url'] + xmlQuery, auth = (s['user'], s['passwd']))
+            r = requests.get(s['url'] + xmlQuery,
+                             auth=(s['user'], s['passwd']))
 
             allstat = json.loads(json.dumps(xmltodict.parse(r.text)['monit']))
 
@@ -43,29 +49,35 @@ def getMonit():
                 status[name] = int(service['status'])
                 checks[service['name']] = status[name]
 
-                server = dict(name = site, url = s['url'], result = checks)
+                server = dict(name=site, url=s['url'], result=checks)
 
             output.append(server)
 
     print(datetime.datetime.now())
     return(output)
 
-## Classes
+# Classes
+
 
 class monitDashboard(web.application):
+
     def run(self, port=8080, *middleware):
         func = self.wsgifunc(*middleware)
         return web.httpserver.runsimple(func, ('0.0.0.0', port))
 
+
 class index(object):
+
     def GET(self):
-        return render.index(output = getMonit(), now = datetime.datetime.now())
+        return render.index(output=getMonit(), now=datetime.datetime.now())
+
 
 class help(object):
+
     def GET(self):
         return render.help()
 
-## Main
+# Main
 if __name__ == "__main__":
     app = monitDashboard(urls, globals())
     app.run(port=8080)
