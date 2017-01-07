@@ -1,0 +1,14 @@
+{
+  Server A": {
+    "url": "http://one.example.com:2812",
+    "user": "monit",
+    "passwd": "secret"
+  },
+
+  "Server B": {
+    "url": "http://two.example.com:2812",
+    "user": "monit",
+    "passwd": "secret"
+  }
+
+}

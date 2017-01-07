@@ -1,0 +1,3 @@
+*.pyc
+.*.swp
+conf/servers.json
