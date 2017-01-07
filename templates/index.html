@@ -1,0 +1,82 @@
+$def with (output, now)
+
+$ errors = 0
+$ color = "green"
+$for server in range(len(output)):
+        $code:
+            errors = 0
+            color = "green"
+
+        $for check in output[server]['result'].keys():
+            $ isError = output[server]['result'].get(check)
+            $if isError != 0:
+                $code:
+                    errors=errors+1
+
+        $if errors > 0:
+            $code:
+                color = "red"
+            <button class="accordion ${color}">$output[server]['name']: $errors error(s)</button>
+            <div class="panel">
+
+            <br>
+            <table width=100%>
+            <thead class="server-link">
+            <tr><th colspan="2">
+            <a href="$output[server]['url']" target="_blank">$output[server]['name']</a>
+            </th></tr>
+            </thead>
+            $for check in output[server]['result'].keys():
+                $ isError = output[server]['result'].get(check)
+                $if isError != 0:
+                    <tr>
+                    <td><a href="$output[server]['url']/$check"
+                      target="_blank">$check</a></td>
+                    <td><a href="$output[server]['url']/$check"
+                       target="_blank"><img src="static/img/error.png"></a></td>
+                    </tr>
+                $else:
+                    <tr>
+                    <td>$check</td>
+                    <td><img src="static/img/ok.png"></td>
+                    </tr>
+
+            </table>
+            </div>
+        $else:
+            $code:
+                color = "green"
+            <button class="accordion ${color}">$output[server]['name']</button>
+            <div class="panel">
+
+            <br>
+            <table width=100%>
+            <thead class="server-link">
+            <tr><th colspan="2">
+            <a href="$output[server]['url']" target="_blank">$output[server]['name']</a>
+            </th></tr>
+            </thead>
+            $for check in output[server]['result'].keys():
+                $ isError = output[server]['result'].get(check)
+                $if isError != 0:
+                    <tr>
+                    <td><a href="$output[server]['url']/$check"
+                      target="_blank">$check</a></td>
+                    <td><a href="$output[server]['url']/$check"
+                       target="_blank"><img src="static/img/error.png"></a></td>
+                    </tr>
+                $else:
+                    <tr>
+                    <td>$check</td>
+                    <td><img src="static/img/ok.png"></td>
+                    </tr>
+
+            </table>
+            </div>
+
+    <br><br><br>
+
+Latest update: $now.day/$now.month/$now.year, $now.hour:$now.minute:$now.second
+<br><br>
+
+<script src="static/monit-dashboard.js" type="text/javascript"></script>
