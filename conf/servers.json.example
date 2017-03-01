@@ -1,5 +1,5 @@
 {
-  Server A": {
+  "Server A": {
     "url": "http://one.example.com:2812",
     "user": "monit",
     "passwd": "secret"
