@@ -28,8 +28,6 @@ output = []
 
 def getMonit():
     output = []
-    server = {}
-    checks = OrderedDict()
     xmlQuery = "/_status?format=xml"
 
     with open('{0}/conf/servers.json'.format(os.path.expanduser('.'))) as f:
@@ -44,12 +42,13 @@ def getMonit():
 
             services = allstat['service']
             status = {}
+            server = {}
             checks = OrderedDict()
 
             for service in services:
                 name = service['name']
                 status[name] = int(service['status'])
-                checks[service['name']] = status[name]
+                checks[name] = status[name]
 
             sorted_checks = OrderedDict()
             sorted_checks = OrderedDict(sorted(checks.iteritems(), key=itemgetter(1), reverse=True))
