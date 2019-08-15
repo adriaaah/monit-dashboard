@@ -7,6 +7,8 @@ import json
 import os
 import sys
 import datetime
+from collections import OrderedDict
+from operator import itemgetter
 
 urls = ('/', 'index',
         '/help', 'help'
@@ -26,8 +28,6 @@ output = []
 
 def getMonit():
     output = []
-    server = {}
-    checks = {}
     xmlQuery = "/_status?format=xml"
 
     with open('{0}/conf/servers.json'.format(os.path.expanduser('.'))) as f:
@@ -42,14 +42,17 @@ def getMonit():
 
             services = allstat['service']
             status = {}
-            checks = {}
+            server = {}
+            checks = OrderedDict()
 
             for service in services:
                 name = service['name']
                 status[name] = int(service['status'])
-                checks[service['name']] = status[name]
+                checks[name] = status[name]
 
-                server = dict(name=site, url=s['url'], result=checks)
+            sorted_checks = OrderedDict()
+            sorted_checks = OrderedDict(sorted(checks.iteritems(), key=itemgetter(1), reverse=True))
+            server = dict(name=site, url=s['url'], result=sorted_checks)
 
             output.append(server)
 
