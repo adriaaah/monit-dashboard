@@ -1,7 +1,6 @@
 $def with (output, now)
-$ data = 0.4
 
-<body onload="draw($data);">
+<body onload="draw($output[0]['s_rate']);">
 $ errors = 0
 $ color = "green"
 $for server in range(len(output)):

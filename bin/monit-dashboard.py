@@ -25,6 +25,20 @@ output = []
 
 # Functions
 
+def calculate_percentage(data):
+    perc = {}
+    ls = data.values()
+    z, nz = 0,0
+    for v in ls:
+        if v == 0:
+            z += 1
+        else:
+            nz += 1
+    perc['green'] = (float(z)*100)/len(ls)
+    perc['red'] = (float(nz)*100)/len(ls)
+    return perc
+
+
 def getMonit():
     output = []
     xmlQuery = "/_status?format=xml"
@@ -51,7 +65,9 @@ def getMonit():
 
             sorted_checks = OrderedDict()
             sorted_checks = OrderedDict(sorted(checks.iteritems(), key=itemgetter(1), reverse=True))
-            server = dict(name=site, url=s['url'], result=sorted_checks)
+            perc = calculate_percentage(sorted_checks)
+            print perc
+            server = dict(name=site, url=s['url'], result=sorted_checks, s_rate=perc)
 
             output.append(server)
 

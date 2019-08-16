@@ -8,12 +8,15 @@ for (i = 0; i < acc.length; i++) {
     }
 }
 
-function draw(data) {
+function draw(rate) {
+  console.log(rate)
+  var green = (rate['green']*2)/100;
+  var red = (rate['red']*2)/100;
   var canvas = document.getElementById("canvas");
   var ctx = canvas.getContext("2d");
 
   var colors = ['#40ff00', '#ff0000'];
-  var angles = [Math.PI * 1.5, Math.PI * data];
+  var angles = [Math.PI * green, Math.PI * red];
   var offset = 0;
   var beginAngle = 0;
   var endAngle = 0;
