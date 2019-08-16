@@ -1,11 +1,7 @@
 $def with (output, now)
-$ data = 0.5
-<html>
-<head>
-  <script src="static/monit-dashboard.js" type="text/javascript"></script>
-</head>
+$ data = 0.4
 
-<body onload='draw($data);'>
+<body onload="draw($data);">
 $ errors = 0
 $ color = "green"
 $for server in range(len(output)):
@@ -86,5 +82,7 @@ Latest update: $now.day/$now.month/$now.year, $now.hour:$now.minute:$now.second
 <br><br>
 
 <canvas id="canvas" width="400" height="400"></canvas>
+
 </body>
-</html>
+
+<script src="static/monit-dashboard.js" type="text/javascript"></script>

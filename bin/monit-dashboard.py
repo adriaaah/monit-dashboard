@@ -25,7 +25,6 @@ output = []
 
 # Functions
 
-
 def getMonit():
     output = []
     xmlQuery = "/_status?format=xml"
@@ -60,7 +59,6 @@ def getMonit():
     return(output)
 
 # Classes
-
 
 class monitDashboard(web.application):
 
