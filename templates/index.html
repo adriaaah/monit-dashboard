@@ -3,6 +3,7 @@ $def with (output, now)
 <body onload="draw($output[0]['s_rate']);">
 $ errors = 0
 $ color = "green"
+
 $for server in range(len(output)):
         $code:
             errors = 0
@@ -17,7 +18,7 @@ $for server in range(len(output)):
         $if errors > 0:
             $code:
                 color = "red"
-            <button class="accordion ${color}">$output[server]['name']: $errors error(s)</button>
+            <button class="accordion ${color}" onmouseenter="draw($output[server]['s_rate'])" >$output[server]['name']: $errors error(s)</button>
             <div class="panel">
 
             <br>
@@ -81,6 +82,7 @@ Latest update: $now.day/$now.month/$now.year, $now.hour:$now.minute:$now.second
 <br><br>
 
 <canvas id="canvas" width="400" height="400"></canvas>
+
 
 </body>
 
