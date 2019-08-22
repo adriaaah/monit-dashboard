@@ -72,6 +72,7 @@ def getMonit():
             output.append(server)
 
     print(datetime.datetime.now())
+    output.append({'url': u'https://monit.xxx.xxx', 'result': OrderedDict([(u'staging', 32), (u'monitoring1', 0)]), 's_rate': {'green': 70.0, 'red': 30.0}, 'name': u'MY Environment2'})
     return(output)
 
 # Classes
