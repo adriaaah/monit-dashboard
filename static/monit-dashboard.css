@@ -41,6 +41,7 @@ button.accordion {
     border: none;
     outline: none;
     transition: 0.4s;
+    margin: 0.6rem;
 }
 
 div.panel {
@@ -69,4 +70,14 @@ div.panel.show {
 
 .red:hover {
     background-color: #c9302c;
+}
+
+.canvas-graph {
+  min-height: 30%;
+  min-width: 24.5%;
+  display: inline-block;
+  position: relative;
+  background-color: white;
+  margin: 20px 0;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12)
 }

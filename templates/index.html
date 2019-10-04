@@ -4,7 +4,7 @@ $def with (output, now)
 $ errors = 0
 $ color = "green"
 <div>
-<div style="height: 50%; overflow-y: scroll;">
+<div style="height: 40%; overflow-y: scroll; overflow-x: hidden;">
 $for server in range(len(output)):
         $code:
             errors = 0
@@ -79,8 +79,14 @@ $for server in range(len(output)):
 </div>
 
 
-<div style="height: 45%; overflow: scroll;">
+<div style="height:40%">
+<div class="canvas-graph">
+<div style="background-color: grey; text-align: center;"><h3>Hosts status</h3></div>
 <canvas id="canvas" width="400" height="400"></canvas>
+</div>
+</div>
+
+<div style="height: 10%;">
 <br><br><br>
 Latest update: $now.day/$now.month/$now.year, $now.hour:$now.minute:$now.second
 <br><br>
