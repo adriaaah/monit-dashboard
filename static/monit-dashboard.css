@@ -37,7 +37,7 @@ button.accordion {
     cursor: pointer;
     padding: 18px;
     width: 100%;
-    text-align: left;
+    text-align: center;
     border: none;
     outline: none;
     transition: 0.4s;
@@ -72,6 +72,12 @@ div.panel.show {
     background-color: #c9302c;
 }
 
+.canvas-container {
+  height: 40%;
+  margin: auto;
+  width: 24%;
+}
+
 .canvas-graph {
   min-height: 30%;
   min-width: 24.5%;
@@ -80,4 +86,11 @@ div.panel.show {
   background-color: white;
   margin: 20px 0;
   box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12)
+}
+
+.canvas-header {
+    padding: 1rem;
+    height: 2rem;
+    background-color: #F2F2F2;
+    text-align: center;
 }
