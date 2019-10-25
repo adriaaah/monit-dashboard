@@ -9,8 +9,11 @@ for (i = 0; i < acc.length; i++) {
 }
 
 function draw(rate) {
-  console.log(rate)
-  var percentage = [rate['green'], rate['red']];
+  var count = [rate['green'], rate['red']];
+  var percentage = [
+    (count[0]*100)/(count[0]+count[1]),
+    (count[1]*100)/(count[0]+count[1])
+  ]
   var status = ['Ok', 'Error'];
   var green = (percentage[0]*2)/100;
   var red = (percentage[1]*2)/100;
@@ -41,12 +44,13 @@ function draw(rate) {
       ctx.stroke();
       ctx.fill();
 
-      ctx.rect(canvas.width - 105, i * 20 + 10, 10, 10);
+      ctx.rect(canvas.width - 129, i * 20 + 10, 10, 10);
       ctx.fill();
       ctx.font = "13px sans-serif";
       //ctx.font = "20px Georgia";
-      ctx.fillText(status[i] + " - " + Number(percentage[i]).toFixed(1) + " %",
-        canvas.width - 85, i * 20 + 20);
+      ctx.fillText(status[i] + " - " + count[i] + " (" +
+        Number(percentage[i]).toFixed(1) + "%)",
+        canvas.width - 109, i * 20 + 20);
     }
   }
 }

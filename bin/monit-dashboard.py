@@ -25,8 +25,8 @@ output = []
 
 # Functions
 
-def calculate_percentage(data):
-    perc = {}
+def calculate_count(data):
+    count = {}
     ls = data.values()
     z, nz = 0,0
     for v in ls:
@@ -34,9 +34,9 @@ def calculate_percentage(data):
             z += 1
         else:
             nz += 1
-    perc['green'] = (float(z)*100)/len(ls)
-    perc['red'] = (float(nz)*100)/len(ls)
-    return perc
+    count['green'] = z
+    count['red'] = nz
+    return count
 
 
 def getMonit():
@@ -65,9 +65,8 @@ def getMonit():
 
             sorted_checks = OrderedDict()
             sorted_checks = OrderedDict(sorted(checks.iteritems(), key=itemgetter(1), reverse=True))
-            perc = calculate_percentage(sorted_checks)
-            print perc
-            server = dict(name=site, url=s['url'], result=sorted_checks, s_rate=perc)
+            count = calculate_count(sorted_checks)
+            server = dict(name=site, url=s['url'], result=sorted_checks, s_rate=count)
 
             output.append(server)
 
