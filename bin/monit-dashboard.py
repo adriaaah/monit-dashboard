@@ -25,6 +25,19 @@ output = []
 
 # Functions
 
+def calculate_count(data):
+    count = {}
+    ls = data.values()
+    z, nz = 0,0
+    for v in ls:
+        if v == 0:
+            z += 1
+        else:
+            nz += 1
+    count['green'] = z
+    count['red'] = nz
+    return count
+
 
 def getMonit():
     output = []
@@ -52,7 +65,8 @@ def getMonit():
 
             sorted_checks = OrderedDict()
             sorted_checks = OrderedDict(sorted(checks.iteritems(), key=itemgetter(1), reverse=True))
-            server = dict(name=site, url=s['url'], result=sorted_checks)
+            count = calculate_count(sorted_checks)
+            server = dict(name=site, url=s['url'], result=sorted_checks, s_rate=count)
 
             output.append(server)
 
@@ -60,7 +74,6 @@ def getMonit():
     return(output)
 
 # Classes
-
 
 class monitDashboard(web.application):
 

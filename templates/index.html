@@ -1,7 +1,10 @@
 $def with (output, now)
 
+<body onload="draw($output[0]['s_rate']);">
 $ errors = 0
 $ color = "green"
+<div>
+<div style="height: 40%; overflow-y: scroll; overflow-x: hidden;">
 $for server in range(len(output)):
         $code:
             errors = 0
@@ -16,7 +19,7 @@ $for server in range(len(output)):
         $if errors > 0:
             $code:
                 color = "red"
-            <button class="accordion ${color}">$output[server]['name']: $errors error(s)</button>
+            <button class="accordion ${color}" onmouseenter="draw($output[server]['s_rate'])">$output[server]['name']: $errors error(s)</button>
             <div class="panel">
 
             <br>
@@ -46,7 +49,7 @@ $for server in range(len(output)):
         $else:
             $code:
                 color = "green"
-            <button class="accordion ${color}">$output[server]['name']</button>
+            <button class="accordion ${color}" onmouseenter="draw($output[server]['s_rate'])">$output[server]['name']</button>
             <div class="panel">
 
             <br>
@@ -73,10 +76,23 @@ $for server in range(len(output)):
 
             </table>
             </div>
+</div>
 
-    <br><br><br>
 
+<div class="canvas-container">
+<div class="canvas-graph">
+<div class="canvas-header"><h2 style="margin: 0">Hosts status</h2></div>
+<canvas id="canvas" width="400" height="400"></canvas>
+</div>
+</div>
+
+<div style="height: 10%;">
+<br><br><br>
 Latest update: $now.day/$now.month/$now.year, $now.hour:$now.minute:$now.second
 <br><br>
+</div>
+
+</div>
+</body>
 
 <script src="static/monit-dashboard.js" type="text/javascript"></script>
