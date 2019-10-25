@@ -10,11 +10,11 @@ for (i = 0; i < acc.length; i++) {
 
 function draw(rate) {
   console.log(rate)
-  var green = (rate['green']*2)/100;
-  var red = (rate['red']*2)/100;
+  var percentage = [rate['green'], rate['red']];
+  var green = (percentage[0]*2)/100;
+  var red = (percentage[1]*2)/100;
   var canvas = document.getElementById("canvas");
   var ctx = canvas.getContext("2d");
-
   var colors = ['#40ff00', '#ff0000'];
   var angles = [Math.PI * green, Math.PI * red];
   var offset = 0;
@@ -28,7 +28,9 @@ function draw(rate) {
     medianAngle = (endAngle + beginAngle) / 2;
     offsetX = Math.cos(medianAngle) * offset;
     offsetY = Math.sin(medianAngle) * offset;
+
     ctx.beginPath();
+
     ctx.fillStyle = colors[i % colors.length];
     ctx.moveTo(200 + offsetX, 200 + offsetY);
     ctx.arc(200 + offsetX, 200 + offsetY, 120, beginAngle, endAngle);
