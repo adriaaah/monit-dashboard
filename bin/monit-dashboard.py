@@ -66,9 +66,11 @@ def getMonit():
                 checks[name] = status[name]
 
             sorted_checks = OrderedDict()
-            sorted_checks = OrderedDict(sorted(checks.iteritems(), key=itemgetter(1), reverse=True))
+            sorted_checks = OrderedDict(sorted(checks.iteritems(),
+                key=itemgetter(1), reverse=True))
             count = calculate_count(sorted_checks)
-            server = dict(name=site, url=s['url'], result=sorted_checks, s_rate=count)
+            server = dict(name=site, url=s['url'],
+                result=sorted_checks, s_rate=count)
 
             output.append(server)
     print(datetime.datetime.now())
@@ -77,22 +79,30 @@ def getMonit():
 # Classes
 
 class monitDashboard(web.application):
-
     def run(self, port=8080, *middleware):
         func = self.wsgifunc(*middleware)
         return web.httpserver.runsimple(func, ('0.0.0.0', port))
 
 
 class index(object):
-
     def GET(self):
         return render.index(output=getMonit(), now=datetime.datetime.now())
 
 
 class help(object):
-
     def GET(self):
         return render.help()
+
+class download(object):
+    def GET(self):
+        filename = 'health_report.xlsx'
+        output = getMonit()
+        utils.generate_report_excel(output, filename)
+        web.header('Content-Disposition',
+            'attachment; filename="health_report.xlsx"')
+        web.header('Content-type','application/octet-stream')
+        web.header('Cache-Control','no-cache')
+        return open(filename, 'rb').read()
 
 # Main
 if __name__ == "__main__":
