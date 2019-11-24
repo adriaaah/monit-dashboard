@@ -9,9 +9,11 @@ import sys
 import datetime
 from collections import OrderedDict
 from operator import itemgetter
+import utils
 
 urls = ('/', 'index',
-        '/help', 'help'
+        '/help', 'help',
+        '/download', 'download'
         )
 
 app = web.application(urls, globals())
@@ -69,7 +71,6 @@ def getMonit():
             server = dict(name=site, url=s['url'], result=sorted_checks, s_rate=count)
 
             output.append(server)
-
     print(datetime.datetime.now())
     return(output)
 
