@@ -1,10 +1,13 @@
-$def with (output, now)
+$def with (output, now, download_api)
 
 <body onload="draw($output[0]['s_rate']);">
 $ errors = 0
 $ color = "green"
 <div>
-<div style="height: 40%; overflow-y: scroll; overflow-x: hidden;">
+<div class="download-header">
+  <button class="download-button" onclick="window.location.href = '$download_api';">Download</button>
+</div>
+<div style="height: 35%; overflow-y: scroll; overflow-x: hidden;">
 $for server in range(len(output)):
         $code:
             errors = 0

@@ -86,8 +86,9 @@ class monitDashboard(web.application):
 
 class index(object):
     def GET(self):
-        return render.index(output=getMonit(), now=datetime.datetime.now())
-
+        return render.index(output=getMonit(),
+            now=datetime.datetime.now(),
+            download_api=os.environ['DOWNLOAD_API_URL'])
 
 class help(object):
     def GET(self):

@@ -41,7 +41,28 @@ button.accordion {
     border: none;
     outline: none;
     transition: 0.4s;
-    margin: 0.6rem;
+    margin: 0.6rem 0;
+}
+
+button.download-button {
+    color: white;
+    background-color: orange;
+    cursor: pointer;
+    padding: 18px;
+    text-align: center;
+    border: none;
+    outline: none;
+    transition: 0.4s;
+    float: right;
+    margin: auto 0;
+}
+
+div.download-header {
+    height: 10%;
+    background-color: black;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 20px;
 }
 
 div.panel {
@@ -73,7 +94,7 @@ div.panel.show {
 }
 
 .canvas-container {
-  height: 40%;
+  height: 35%;
   margin: auto;
   width: 24%;
 }
