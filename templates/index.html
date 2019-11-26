@@ -5,9 +5,9 @@ $ errors = 0
 $ color = "green"
 <div>
 <div class="download-header">
-  <button class="download-button" onclick="window.location.href = '$download_api';">Download</button>
+  <button class="download-button" onclick="window.location.href = '$download_api';">Download Report</button>
 </div>
-<div style="height: 35%; overflow-y: scroll; overflow-x: hidden;">
+<div style="height: 38%; overflow-y: scroll; overflow-x: hidden;">
 $for server in range(len(output)):
         $code:
             errors = 0

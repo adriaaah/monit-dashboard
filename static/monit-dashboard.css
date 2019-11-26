@@ -46,7 +46,7 @@ button.accordion {
 
 button.download-button {
     color: white;
-    background-color: orange;
+    background-color: #00a8ff;
     cursor: pointer;
     padding: 18px;
     text-align: center;
@@ -58,8 +58,8 @@ button.download-button {
 }
 
 div.download-header {
-    height: 10%;
-    background-color: black;
+    height: 7%;
+    background-color: #273c75;
     display: flex;
     justify-content: flex-end;
     padding-right: 20px;
