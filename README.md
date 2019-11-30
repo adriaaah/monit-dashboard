@@ -79,18 +79,21 @@ the port by adjusting `app.run(port=8080)` in `bin/monit-dashboard.py` file.
 - Frontend support: Júlia Vázquez
 - [Icons]
 - [Accordion menu][accordion]
+- [Enhanced features][enhanced] by [Saravanan Palanisamy][saravanan]
 
 # License
 
 [AGPL][license]
 
 [accordion]: http://www.w3schools.com/howto/howto_js_accordion.asp
+[enhanced]: https://github.com/adriaaah/monit-dashboard/commits?author=saravanan30erd
 [icons]: https://commons.wikimedia.org/wiki/User:House
 [idea]: https://imil.net/blog/2016/03/16/Fetch-monit-status-in-JSON/
 [license]: LICENSE
 [lpthw]: https://learnpythonthehardway.org/book/ex50.html
 [monit]: https://mmonit.com/monit/
 [port]: https://stackoverflow.com/questions/14444913/web-py-specify-address-and-port
+[saravanan]: https://github.com/saravanan30erd
 [template-example]: https://stackoverflow.com/questions/28508869/using-web-py-to-dynamically-output-values-from-process-initiated-by-form-submiss
 [webpy]: http://webpy.org/
 [webpy-tutorial]: http://webpy.org/tutorial3.en
