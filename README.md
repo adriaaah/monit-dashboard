@@ -37,6 +37,7 @@ thanks to the built-in web server, it is displayed in a single HTML page.
 #### Python libaries
 
 - `yum install python-requests python-xmltodict python-simplejson`
+- `pip install xlsxwriter`
 
 ## Requisites
 
