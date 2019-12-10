@@ -44,13 +44,6 @@ thanks to the built-in web server, it is displayed in a single HTML page.
 - Config file `conf/servers.json` prior run. You might find a sample file at
 `conf/servers.json.example`.
 - Please see [Config](#config) section for further details.
-- Set Environment variable DOWNLOAD_API_URL. You can download the complete
-status report in excel format and this download feature is implemented in API
-/download. If you are running your app in http://10.0.0.10:8080/monit,
-
-```
-DOWNLOAD_API_URL=http://10.0.0.10:8080/monit/download
-```
 
 ## Run
 
