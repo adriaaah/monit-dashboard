@@ -1,3 +1,4 @@
 *.pyc
 .*.swp
 conf/servers.json
+*.xlsx

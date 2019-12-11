@@ -4,7 +4,10 @@ $def with (output, now)
 $ errors = 0
 $ color = "green"
 <div>
-<div style="height: 40%; overflow-y: scroll; overflow-x: hidden;">
+<div class="download-header">
+  <button class="download-button" onclick="window.location.href = 'download';">Download Report</button>
+</div>
+<div style="height: 38%; overflow-y: scroll; overflow-x: hidden;">
 $for server in range(len(output)):
         $code:
             errors = 0

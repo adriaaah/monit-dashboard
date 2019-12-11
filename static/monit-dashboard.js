@@ -19,7 +19,7 @@ function draw(rate) {
   var red = (percentage[1]*2)/100;
   var canvas = document.getElementById("canvas");
   var ctx = canvas.getContext("2d");
-  var colors = ['#40ff00', '#ff0000'];
+  var colors = ['#00a90e','#ff9a02'];
   var angles = [Math.PI * green, Math.PI * red];
   var offset = 0;
   var beginAngle = 0;
@@ -41,7 +41,7 @@ function draw(rate) {
       ctx.moveTo(200 + offsetX, 200 + offsetY);
       ctx.arc(200 + offsetX, 200 + offsetY, 120, beginAngle, endAngle);
       ctx.lineTo(200 + offsetX, 200 + offsetY);
-      ctx.stroke();
+      // ctx.stroke();
       ctx.fill();
 
       ctx.rect(canvas.width - 129, i * 20 + 10, 10, 10);
