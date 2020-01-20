@@ -94,9 +94,11 @@ div.panel.show {
 }
 
 .canvas-container {
-  height: 35%;
-  margin: auto;
-  width: 24%;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  margin-top:200;
+  margin-bottom:100;
 }
 
 .canvas-graph {
