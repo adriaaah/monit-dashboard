@@ -1,6 +1,7 @@
 import xlsxwriter
 import os
 
+
 def generate_report_excel(output, filename):
     if os.path.exists(filename):
         os.remove(filename)

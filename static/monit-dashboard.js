@@ -2,32 +2,32 @@ var acc = document.getElementsByClassName("accordion");
 var i;
 
 for (i = 0; i < acc.length; i++) {
-    acc[i].onclick = function() {
-        this.classList.toggle("active");
-        this.nextElementSibling.classList.toggle("show");
-    }
+  acc[i].onclick = function() {
+    this.classList.toggle("active");
+    this.nextElementSibling.classList.toggle("show");
+  }
 }
 
 function draw(rate) {
   var count = [rate['green'], rate['red']];
   var percentage = [
-    (count[0]*100)/(count[0]+count[1]),
-    (count[1]*100)/(count[0]+count[1])
+    (count[0] * 100) / (count[0] + count[1]),
+    (count[1] * 100) / (count[0] + count[1])
   ]
   var status = ['Ok', 'Error'];
-  var green = (percentage[0]*2)/100;
-  var red = (percentage[1]*2)/100;
+  var green = (percentage[0] * 2) / 100;
+  var red = (percentage[1] * 2) / 100;
   var canvas = document.getElementById("canvas");
   var ctx = canvas.getContext("2d");
-  var colors = ['#00a90e','#ff9a02'];
+  var colors = ['#00a90e', '#ff9a02'];
   var angles = [Math.PI * green, Math.PI * red];
   var offset = 0;
   var beginAngle = 0;
   var endAngle = 0;
   var offsetX, offsetY, medianAngle;
 
-  ctx.clearRect(0,0,canvas.width, canvas.height);
-  for(var i = 0; i < angles.length; i = i + 1) {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  for (var i = 0; i < angles.length; i = i + 1) {
     beginAngle = endAngle;
     endAngle = endAngle + angles[i];
     medianAngle = (endAngle + beginAngle) / 2;
@@ -36,7 +36,7 @@ function draw(rate) {
 
     ctx.beginPath();
 
-    if(percentage[i] !== 0) {
+    if (percentage[i] !== 0) {
       ctx.fillStyle = colors[i % colors.length];
       ctx.moveTo(200 + offsetX, 200 + offsetY);
       ctx.arc(200 + offsetX, 200 + offsetY, 120, beginAngle, endAngle);

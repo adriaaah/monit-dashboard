@@ -1,14 +1,14 @@
 $def with (output, now)
 
 <body onload="draw($output[0]['s_rate']);">
-$ errors = 0
-$ color = "green"
-<div>
-<div class="download-header">
-  <button class="download-button" onclick="window.location.href = 'download';">Download Report</button>
-</div>
-<div style="height: 100%;border-right:2px solid #ccc; padding:5px;overflow-x: hidden; float:left; width:48%">
-$for server in range(len(output)):
+  $ errors = 0
+  $ color = "green"
+  <div>
+    <div class="download-header">
+      <button class="download-button" onclick="window.location.href = 'download';">Download Report</button>
+    </div>
+    <div style="height: 100%;border-right:2px solid #ccc; padding:5px;overflow-x: hidden; float:left; width:48%">
+      $for server in range(len(output)):
         $code:
             errors = 0
             color = "green"
@@ -82,21 +82,23 @@ $for server in range(len(output)):
 </div>
 
 
-<div class="canvas-container">
-<div class="canvas-graph">
-<div class="canvas-header"><h2 style="margin: 0">Hosts status</h2></div>
-<canvas id="canvas" width="400" height="400"></canvas>
-</div>
-</div>
+    <div class="canvas-container">
+      <div class="canvas-graph">
+        <div class="canvas-header">
+          <h2 style="margin: 0">Hosts status</h2>
+        </div>
+        <canvas id="canvas" width="400" height="400"></canvas>
+      </div>
+    </div>
 
-<div style="height: 10%; float:right">
-<br><br><br>
-Latest update: $now.day/$now.month/$now.year, $now.hour:$now.minute:$now.second
-<br><br>
-<a href="/">Home</a> | <a href="/help">Help</a>
-</div>
+    <div style="height: 10%; float:right">
+      <br><br><br>
+      Latest update: $now.day/$now.month/$now.year, $now.hour:$now.minute:$now.second
+      <br><br>
+      <a href="/">Home</a> | <a href="/help">Help</a>
+    </div>
 
-</div>
+  </div>
 </body>
 
 <script src="static/monit-dashboard.js" type="text/javascript"></script>
