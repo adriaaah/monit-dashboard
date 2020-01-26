@@ -27,10 +27,11 @@ output = []
 
 # Functions
 
+
 def calculate_count(data):
     count = {}
     ls = data.values()
-    z, nz = 0,0
+    z, nz = 0, 0
     for v in ls:
         if v == 0:
             z += 1
@@ -67,16 +68,17 @@ def getMonit():
 
             sorted_checks = OrderedDict()
             sorted_checks = OrderedDict(sorted(checks.iteritems(),
-                key=itemgetter(1), reverse=True))
+                                               key=itemgetter(1), reverse=True))
             count = calculate_count(sorted_checks)
             server = dict(name=site, url=s['url'],
-                result=sorted_checks, s_rate=count)
+                          result=sorted_checks, s_rate=count)
 
             output.append(server)
     print(datetime.datetime.now())
     return(output)
 
 # Classes
+
 
 class monitDashboard(web.application):
     def run(self, port=8080, *middleware):
@@ -87,11 +89,13 @@ class monitDashboard(web.application):
 class index(object):
     def GET(self):
         return render.index(output=getMonit(),
-            now=datetime.datetime.now())
+                            now=datetime.datetime.now())
+
 
 class help(object):
     def GET(self):
         return render.help()
+
 
 class download(object):
     def GET(self):
@@ -99,10 +103,11 @@ class download(object):
         output = getMonit()
         utils.generate_report_excel(output, filename)
         web.header('Content-Disposition',
-            'attachment; filename="health_report.xlsx"')
-        web.header('Content-type','application/octet-stream')
-        web.header('Cache-Control','no-cache')
+                   'attachment; filename="health_report.xlsx"')
+        web.header('Content-type', 'application/octet-stream')
+        web.header('Cache-Control', 'no-cache')
         return open(filename, 'rb').read()
+
 
 # Main
 if __name__ == "__main__":
