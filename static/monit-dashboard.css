@@ -1,104 +1,104 @@
 .server-link a {
-  color: #fff;
-  text-decoration: none;
-  text-transform: uppercase;
-  text-decoration: underline;
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    text-decoration: underline;
 }
 
 th {
-  background-color: #999;
-  padding: 10px;
+    background-color: #999;
+    padding: 10px;
 }
 
 td {
-  border-bottom: 1px solid #ccc;
-  padding: 15px;
+    border-bottom: 1px solid #ccc;
+    padding: 15px;
 }
 
 body {
-  font-family: arial;
+    font-family: arial;
 }
 
 tr:nth-child(odd) {
-  background-color: #fff;
+    background-color: #fff;
 }
 
 tr:nth-child(even) {
-  background-color: #f2f2f2;
+    background-color: #f2f2f2;
 }
 
 a {
-  color: #cb0017;
-  font-weight: bolder;
+    color: #cb0017;
+    font-weight: bolder;
 }
 
 button.accordion {
-  color: #FFF;
-  cursor: pointer;
-  padding: 18px;
-  width: 100%;
-  text-align: center;
-  border: none;
-  outline: none;
-  transition: 0.4s;
-  margin: 0.6rem 0;
+    color: #FFF;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    text-align: center;
+    border: none;
+    outline: none;
+    transition: 0.4s;
+    margin: 0.6rem 0;
 }
 
 button.download-button {
-  color: white;
-  background-color: #00a8ff;
-  cursor: pointer;
-  padding: 18px;
-  text-align: center;
-  border: none;
-  outline: none;
-  transition: 0.4s;
-  float: right;
-  margin: auto 0;
+    color: white;
+    background-color: #00a8ff;
+    cursor: pointer;
+    padding: 18px;
+    text-align: center;
+    border: none;
+    outline: none;
+    transition: 0.4s;
+    float: right;
+    margin: auto 0;
 }
 
 div.download-header {
-  height: 7%;
-  background-color: #273c75;
-  display: flex;
-  justify-content: flex-end;
-  padding-right: 20px;
+    height: 7%;
+    background-color: #273c75;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 20px;
 }
 
 div.panel {
-  padding: 0 18px;
-  background-color: white;
-  display: none;
+    padding: 0 18px;
+    background-color: white;
+    display: none;
 }
 
 div.panel.show {
-  display: block;
+    display: block;
 }
 
 .green {
-  background-color: #79bd8f;
-  font-size: 20px;
+    background-color: #79bd8f;
+    font-size: 20px;
 }
 
 .green:hover {
-  background-color: #588a68;
+    background-color: #588a68;
 }
 
 .red {
-  background-color: #d9534f;
-  font-size: 20px;
+    background-color: #d9534f;
+    font-size: 20px;
 }
 
 .red:hover {
-  background-color: #c9302c;
+    background-color: #c9302c;
 }
 
 .canvas-container {
   width: 50%;
   display: flex;
   justify-content: center;
-  margin-top: 200;
-  margin-bottom: 100;
+  margin-top:200;
+  margin-bottom:100;
 }
 
 .canvas-graph {
@@ -108,12 +108,12 @@ div.panel.show {
   position: relative;
   background-color: white;
   margin: 20px 0;
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12)
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12)
 }
 
 .canvas-header {
-  padding: 1rem;
-  height: 2rem;
-  background-color: #F2F2F2;
-  text-align: center;
+    padding: 1rem;
+    height: 2rem;
+    background-color: #F2F2F2;
+    text-align: center;
 }
