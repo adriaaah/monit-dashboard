@@ -13,11 +13,12 @@ $def with (output, now)
             errors = 0
             color = "green"
 
-        $for check in output[server]['result'].keys():
-            $ isError = output[server]['result'].get(check)
-            $if isError != 0:
-                $code:
-                    errors=errors+1
+        $for _,v in output[server]['result'].items():
+          $for check in v.keys():
+              $ isError = v.get(check)
+              $if isError != 0:
+                  $code:
+                      errors=errors+1
 
         $if errors > 0:
             $code:
@@ -32,20 +33,26 @@ $def with (output, now)
             <a href="$output[server]['url']" target="_blank">$output[server]['name']</a>
             </th></tr>
             </thead>
-            $for check in output[server]['result'].keys():
-                $ isError = output[server]['result'].get(check)
-                $if isError != 0:
-                    <tr>
-                    <td><a href="$output[server]['url']/$check"
-                      target="_blank">$check</a></td>
-                    <td><a href="$output[server]['url']/$check"
-                       target="_blank"><img src="static/img/error.png"></a></td>
-                    </tr>
-                $else:
-                    <tr>
-                    <td>$check</td>
-                    <td><img src="static/img/ok.png"></td>
-                    </tr>
+            $for env, services in output[server]['result'].items():
+              <thead class="server-link">
+                <tr><th colspan="2">
+                  <a href="$output[server]['url']" target="_blank">$env</a>
+                </th></tr>
+              </thead>
+              $for check in services.keys():
+                  $ isError = services.get(check)
+                  $if isError != 0:
+                      <tr>
+                        <td><a href="$output[server]['url']/$env-$check"
+                          target="_blank">$check</a></td>
+                        <td><a href="$output[server]['url']/$check"
+                          target="_blank"><img src="static/img/error.png"></a></td>
+                      </tr>
+                  $else:
+                      <tr>
+                        <td>$check</td>
+                        <td><img src="static/img/ok.png"></td>
+                      </tr>
 
             </table>
             </div>
@@ -62,20 +69,26 @@ $def with (output, now)
             <a href="$output[server]['url']" target="_blank">$output[server]['name']</a>
             </th></tr>
             </thead>
-            $for check in output[server]['result'].keys():
-                $ isError = output[server]['result'].get(check)
-                $if isError != 0:
-                    <tr>
-                    <td><a href="$output[server]['url']/$check"
-                      target="_blank">$check</a></td>
-                    <td><a href="$output[server]['url']/$check"
-                       target="_blank"><img src="static/img/error.png"></a></td>
-                    </tr>
-                $else:
-                    <tr>
-                    <td>$check</td>
-                    <td><img src="static/img/ok.png"></td>
-                    </tr>
+            $for env, services in output[server]['result'].items():
+              <thead class="server-link">
+                <tr><th colspan="2">
+                  <a href="$output[server]['url']" target="_blank">$env</a>
+                </th></tr>
+              </thead>
+              $for check in services.keys():
+                  $ isError = services.get(check)
+                  $if isError != 0:
+                      <tr>
+                        <td><a href="$output[server]['url']/$check"
+                          target="_blank">$check</a></td>
+                        <td><a href="$output[server]['url']/$check"
+                          target="_blank"><img src="static/img/error.png"></a></td>
+                      </tr>
+                  $else:
+                      <tr>
+                        <td>$check</td>
+                        <td><img src="static/img/ok.png"></td>
+                      </tr>
 
             </table>
             </div>

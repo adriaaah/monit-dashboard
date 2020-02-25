@@ -83,8 +83,8 @@ def getMonit():
             count = calculate_count(s_checks)
             server = dict(name=site, url=s['url'],
                           result=s_checks, s_rate=count)
-            print(server)
             output.append(server)
+    #print(output)
     print(datetime.datetime.now())
     return(output)
 
