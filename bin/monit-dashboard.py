@@ -26,21 +26,40 @@ web.config.debug = False
 output = []
 
 # Functions
-
-
 def calculate_count(data):
     count = {}
-    ls = data.values()
     z, nz = 0, 0
-    for v in ls:
-        if v == 0:
-            z += 1
-        else:
-            nz += 1
+    for _,v in data.items():
+        ls = v.values()
+        for v in ls:
+            if v == 0:
+                z += 1
+            else:
+                nz += 1
     count['green'] = z
     count['red'] = nz
     return count
 
+def arrange_services(services):
+    checks = {}
+    for service in services:
+        name = service['name']
+        name1, _, name2 = name.partition('-')
+        if name2 == '':
+            name2 = name1
+            name1 = 'All'
+        if name1 not in list(checks.keys()):
+            checks[name1] = OrderedDict()
+        checks[name1][name2] = int(service['status'])
+    return checks
+
+def sorted_checks(checks):
+    s_checks = {}
+    for k,v in checks.iteritems():
+        s_checks[k] = OrderedDict(
+            sorted(v.iteritems(),key=itemgetter(1), reverse=True)
+        )
+    return s_checks
 
 def getMonit():
     output = []
@@ -57,22 +76,14 @@ def getMonit():
             allstat = json.loads(json.dumps(xmltodict.parse(r.text)['monit']))
 
             services = allstat['service']
-            status = {}
             server = {}
-            checks = OrderedDict()
 
-            for service in services:
-                name = service['name']
-                status[name] = int(service['status'])
-                checks[name] = status[name]
-
-            sorted_checks = OrderedDict()
-            sorted_checks = OrderedDict(sorted(checks.iteritems(),
-                                               key=itemgetter(1), reverse=True))
-            count = calculate_count(sorted_checks)
+            checks = arrange_services(services)
+            s_checks = sorted_checks(checks)
+            count = calculate_count(s_checks)
             server = dict(name=site, url=s['url'],
-                          result=sorted_checks, s_rate=count)
-
+                          result=s_checks, s_rate=count)
+            print(server)
             output.append(server)
     print(datetime.datetime.now())
     return(output)
