@@ -1,5 +1,6 @@
 $def with (output, now)
 
+<!-- Functions -->
 $def row_error(check):
   <tr>
     <td><a href="$output[server]['url']/$env-$check"
@@ -14,6 +15,22 @@ $def row_ok(check):
     <td><img src="static/img/ok.png"></td>
   </tr>
 
+$def table_contents(color, text, services):
+  <thead class="inner-rows">
+    <tr><th class="th-custom ${color}" colspan="2">
+      <a style="color: white">$text</a>
+    </th></tr>
+  </thead>
+  <tbody class="toggle-id">
+  $for check in services.keys():
+      $ isError = services.get(check)
+      $if isError != 0:
+        $:row_error(check)
+      $else:
+        $:row_ok(check)
+  </tbody>
+
+<!-- Main Content -->
 <body onload="draw($output[0]['s_rate']);">
   $ errors = 0
   $ color = "green"
@@ -54,35 +71,14 @@ $def row_ok(check):
                 $if isError != 0:
                   $ errors=errors+1
               $if errors > 0:
-                $ color = "red"
-                <thead class="inner-rows">
-                  <tr><th class="th-custom ${color}" colspan="2">
-                    <a style="color: white">$env</a>
-                  </th></tr>
-                </thead>
-                <tbody class="toggle-id">
-                $for check in services.keys():
-                    $ isError = services.get(check)
-                    $if isError != 0:
-                      $:row_error(check)
-                    $else:
-                      $:row_ok(check)
-                </tbody>
+                $code:
+                  color = "red"
+                  txt = "{}: {} error(s)".format(env, errors)
+                $:table_contents(color, txt, services)
               $else:
-                $ color = "green"
-                <thead class="inner-rows">
-                  <tr><th class="th-custom ${color}" colspan="2">
-                    <a style="color: white">$env</a>
-                  </th></tr>
-                </thead>
-                <tbody class="toggle-id">
-                $for check in services.keys():
-                    $ isError = services.get(check)
-                    $if isError != 0:
-                      $:row_error(check)
-                    $else:
-                      $:row_ok(check)
-                </tbody>
+                $code:
+                  color = "green"
+                $:table_contents(color, env, services)
             </table>
             </div>
         $else:
@@ -99,18 +95,19 @@ $def row_ok(check):
             </th></tr>
             </thead>
             $for env, services in output[server]['result'].items():
-              <thead class="server-link">
-                <tr><th colspan="2">
-                  <a href="$output[server]['url']" target="_blank">$env</a>
-                </th></tr>
-              </thead>
+              $ errors = 0
               $for check in services.keys():
-                  $ isError = services.get(check)
-                  $if isError != 0:
-                    $:row_error(check)
-                  $else:
-                    $:row_ok(check)
-
+                $ isError = services.get(check)
+                $if isError != 0:
+                  $ errors=errors+1
+              $if errors > 0:
+                $code:
+                  color = "red"
+                  txt = "{}: {} error(s)".format(env, errors)
+                $:table_contents(color, txt, services)
+              $else:
+                $ color = "green"
+                $:table_contents(color, env, services)
             </table>
             </div>
 </div>
