@@ -10,6 +10,11 @@ th {
   padding: 10px;
 }
 
+.th-custom {
+  padding: 10px;
+  font-weight: 300;
+}
+
 td {
   border-bottom: 1px solid #ccc;
   padding: 15px;
