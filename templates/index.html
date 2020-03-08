@@ -34,11 +34,12 @@ $def with (output, now)
             </th></tr>
             </thead>
             $for env, services in output[server]['result'].items():
-              <thead class="server-link">
+              <thead class="inner-rows">
                 <tr><th colspan="2">
                   <a href="$output[server]['url']" target="_blank">$env</a>
                 </th></tr>
               </thead>
+              <tbody class="toggle-id">
               $for check in services.keys():
                   $ isError = services.get(check)
                   $if isError != 0:
@@ -50,10 +51,10 @@ $def with (output, now)
                   $else:
                       <tr>
                         <td><a href="$output[server]['url']/$env-$check"
-                          target="_blank" style="text-decoration:none;">$check</a></td>
+                          target="_blank" style="text-decoration:none; color:black;">$check</a></td>
                         <td><img src="static/img/ok.png"></td>
                       </tr>
-
+              </tbody>
             </table>
             </div>
         $else:
@@ -86,7 +87,7 @@ $def with (output, now)
                   $else:
                       <tr>
                         <td><a href="$output[server]['url']/$env-$check"
-                          target="_blank" style="text-decoration:none;">$check</a></td>
+                          target="_blank" style="text-decoration:none; color:black;">$check</a></td>
                         <td><img src="static/img/ok.png"></td>
                       </tr>
 

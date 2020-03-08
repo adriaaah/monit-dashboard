@@ -84,7 +84,7 @@ def getMonit():
             server = dict(name=site, url=s['url'],
                           result=s_checks, s_rate=count)
             output.append(server)
-    #print(output)
+    output.append({'url': u'https://monit.xxx.xxx', 'result': {'All': OrderedDict([(u'staging', 32), (u'monitoring1', 0)])}, 's_rate': {'green': 70.0, 'red': 30.0}, 'name': u'Test Environment'})
     print(datetime.datetime.now())
     return(output)
 

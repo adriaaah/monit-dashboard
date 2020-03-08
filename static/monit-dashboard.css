@@ -117,3 +117,11 @@ div.panel.show {
   background-color: #F2F2F2;
   text-align: center;
 }
+
+tbody.toggle-id {
+  display: none;
+}
+
+tbody.toggle-id.show {
+  display: contents;
+}
