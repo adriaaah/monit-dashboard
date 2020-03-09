@@ -73,11 +73,11 @@ div.download-header {
 div.panel {
   padding: 0 18px;
   background-color: white;
-  display: none;
+  display: block;
 }
 
 div.panel.show {
-  display: block;
+  display: none;
 }
 
 .green {
