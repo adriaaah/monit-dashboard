@@ -10,6 +10,7 @@ import datetime
 from collections import OrderedDict
 from operator import itemgetter
 import utils
+import re
 
 urls = ('/', 'index',
         '/help', 'help',
@@ -48,6 +49,7 @@ def arrange_services(services):
         if name2 == '':
             name2 = name1
             name1 = 'others'
+        name1 = re.sub("([a-z])([A-Z])","\g<1> \g<2>",name1)
         if name1 not in list(checks.keys()):
             checks[name1] = OrderedDict()
         checks[name1][name2] = int(service['status'])
