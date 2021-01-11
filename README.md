@@ -5,6 +5,17 @@
 Python web application to get a dashboard of a bunch of [Monit] servers at a
 glance.
 
+## Screenshots
+
+- Main view when every Monit server hasn't found alerts:
+![dashboard](screenshots/dashboard.png)
+
+- One Monit agent is reporting an error on a server:
+![dashboard-error](screenshots/dashboard-error.png)
+
+- Expand the server with issues with errors on top:
+![error-list](screenshots/error-list.png)
+
 ## How does it work?
 
 Every 300 seconds (hardcoded) the application ask for the data served by the
