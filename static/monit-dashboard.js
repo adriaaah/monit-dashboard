@@ -8,6 +8,16 @@ for (i = 0; i < acc.length; i++) {
   }
 }
 
+var acc = document.getElementsByClassName("inner-rows");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].onclick = function() {
+    this.classList.toggle("active");
+    this.nextElementSibling.classList.toggle("show");
+  }
+}
+
 function draw(rate) {
   var count = [rate['green'], rate['red']];
   var percentage = [
@@ -41,13 +51,11 @@ function draw(rate) {
       ctx.moveTo(200 + offsetX, 200 + offsetY);
       ctx.arc(200 + offsetX, 200 + offsetY, 120, beginAngle, endAngle);
       ctx.lineTo(200 + offsetX, 200 + offsetY);
-      // ctx.stroke();
       ctx.fill();
 
       ctx.rect(canvas.width - 129, i * 20 + 10, 10, 10);
       ctx.fill();
       ctx.font = "13px sans-serif";
-      //ctx.font = "20px Georgia";
       ctx.fillText(status[i] + " - " + count[i] + " (" +
         Number(percentage[i]).toFixed(1) + "%)",
         canvas.width - 109, i * 20 + 20);

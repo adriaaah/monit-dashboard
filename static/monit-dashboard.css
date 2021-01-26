@@ -10,6 +10,11 @@ th {
   padding: 10px;
 }
 
+.th-custom {
+  padding: 10px;
+  font-weight: 300;
+}
+
 td {
   border-bottom: 1px solid #ccc;
   padding: 15px;
@@ -68,11 +73,11 @@ div.download-header {
 div.panel {
   padding: 0 18px;
   background-color: white;
-  display: none;
+  display: block;
 }
 
 div.panel.show {
-  display: block;
+  display: none;
 }
 
 .green {
@@ -116,4 +121,12 @@ div.panel.show {
   height: 2rem;
   background-color: #F2F2F2;
   text-align: center;
+}
+
+tbody.toggle-id {
+  display: none;
+}
+
+tbody.toggle-id.show {
+  display: contents;
 }
