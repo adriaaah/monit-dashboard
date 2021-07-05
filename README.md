@@ -19,12 +19,12 @@ glance.
 ## How does it work?
 
 Every 300 seconds (hardcoded) the application ask for the data served by the
-Monit built-in web server in a XMl report from each configured server. Then,
+Monit built-in web server in a XML report from each configured server. Then,
 thanks to the built-in web server, it is displayed in a single HTML page.
 
-## Pre requisites
+## Installation on…
 
-### Debian GNU/Linux
+### …Debian GNU/Linux
 
 #### Web.py framework
 
@@ -34,7 +34,7 @@ thanks to the built-in web server, it is displayed in a single HTML page.
 
 - `apt install python-xmltodict python-requests`
 
-### CentOS
+### …CentOS
 
 #### Python PIP
 
@@ -55,6 +55,12 @@ thanks to the built-in web server, it is displayed in a single HTML page.
 - Config file `conf/servers.json` prior run. You might find a sample file at
 `conf/servers.json.example`.
 - Please see [Config](#config) section for further details.
+
+## Run it with Docker
+
+1. Build the image once: `docker run -p 8080:8080 monit-dashboard:v0.1.2 .`
+2. Spin up a container: `docker run -d -v /path/to/the/config/file:/app/conf -p 8080:8080 monit-dashboard:v0.1.2`
+3. Point your browser to <http://localhost:8080>
 
 ## Run
 
