@@ -58,8 +58,8 @@ thanks to the built-in web server, it is displayed in a single HTML page.
 
 ## Run it with Docker
 
-1. Build the image once: `docker run -p 8080:8080 monit-dashboard:v0.1.2 .`
-2. Spin up a container: `docker run -d -v /path/to/the/config/file:/app/conf -p 8080:8080 monit-dashboard:v0.1.2`
+1. Build the image once: `docker build -t monit-dashboard .`
+2. Spin up a container: `docker run -v $(pwd)/conf:/app/conf -p 8080:8080 monit-dashboard`
 3. Point your browser to <http://localhost:8080>
 
 ## Run
