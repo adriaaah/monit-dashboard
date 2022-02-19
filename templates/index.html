@@ -1,5 +1,36 @@
 $def with (output, now)
 
+<!-- Functions -->
+$def row_error(check):
+  <tr>
+    <td><a href="$output[server]['url']/$env-$check"
+      target="_blank" style="text-decoration:none;">$check</a></td>
+    <td><img src="static/img/error.png"></td>
+  </tr>
+
+$def row_ok(check):
+  <tr>
+    <td><a href="$output[server]['url']/$env-$check"
+      target="_blank" style="text-decoration:none; color:black;">$check</a></td>
+    <td><img src="static/img/ok.png"></td>
+  </tr>
+
+$def table_contents(color, text, services):
+  <thead class="inner-rows">
+    <tr><th class="th-custom ${color}" colspan="2">
+      <a style="color: white">$text</a>
+    </th></tr>
+  </thead>
+  <tbody class="toggle-id">
+  $for check in services.keys():
+      $ isError = services.get(check)
+      $if isError != 0:
+        $:row_error(check)
+      $else:
+        $:row_ok(check)
+  </tbody>
+
+<!-- Main Content -->
 <body onload="draw($output[0]['s_rate']);">
   $ errors = 0
   $ color = "green"
@@ -13,11 +44,12 @@ $def with (output, now)
             errors = 0
             color = "green"
 
-        $for check in output[server]['result'].keys():
-            $ isError = output[server]['result'].get(check)
-            $if isError != 0:
-                $code:
-                    errors=errors+1
+        $for _,v in output[server]['result'].items():
+          $for check in v.keys():
+              $ isError = v.get(check)
+              $if isError != 0:
+                  $code:
+                      errors=errors+1
 
         $if errors > 0:
             $code:
@@ -27,26 +59,26 @@ $def with (output, now)
 
             <br>
             <table width=100%>
-            <thead class="server-link">
+            <!-- <thead class="server-link">
             <tr><th colspan="2">
             <a href="$output[server]['url']" target="_blank">$output[server]['name']</a>
             </th></tr>
-            </thead>
-            $for check in output[server]['result'].keys():
-                $ isError = output[server]['result'].get(check)
+            </thead> -->
+            $for env, services in output[server]['result'].items():
+              $ errors = 0
+              $for check in services.keys():
+                $ isError = services.get(check)
                 $if isError != 0:
-                    <tr>
-                    <td><a href="$output[server]['url']/$check"
-                      target="_blank">$check</a></td>
-                    <td><a href="$output[server]['url']/$check"
-                       target="_blank"><img src="static/img/error.png"></a></td>
-                    </tr>
-                $else:
-                    <tr>
-                    <td>$check</td>
-                    <td><img src="static/img/ok.png"></td>
-                    </tr>
-
+                  $ errors=errors+1
+              $if errors > 0:
+                $code:
+                  color = "red"
+                  txt = "{}: {} error(s)".format(env, errors)
+                $:table_contents(color, txt, services)
+              $else:
+                $code:
+                  color = "green"
+                $:table_contents(color, env, services)
             </table>
             </div>
         $else:
@@ -57,26 +89,25 @@ $def with (output, now)
 
             <br>
             <table width=100%>
-            <thead class="server-link">
+            <!-- <thead class="server-link">
             <tr><th colspan="2">
             <a href="$output[server]['url']" target="_blank">$output[server]['name']</a>
             </th></tr>
-            </thead>
-            $for check in output[server]['result'].keys():
-                $ isError = output[server]['result'].get(check)
+            </thead> -->
+            $for env, services in output[server]['result'].items():
+              $ errors = 0
+              $for check in services.keys():
+                $ isError = services.get(check)
                 $if isError != 0:
-                    <tr>
-                    <td><a href="$output[server]['url']/$check"
-                      target="_blank">$check</a></td>
-                    <td><a href="$output[server]['url']/$check"
-                       target="_blank"><img src="static/img/error.png"></a></td>
-                    </tr>
-                $else:
-                    <tr>
-                    <td>$check</td>
-                    <td><img src="static/img/ok.png"></td>
-                    </tr>
-
+                  $ errors=errors+1
+              $if errors > 0:
+                $code:
+                  color = "red"
+                  txt = "{}: {} error(s)".format(env, errors)
+                $:table_contents(color, txt, services)
+              $else:
+                $ color = "green"
+                $:table_contents(color, env, services)
             </table>
             </div>
 </div>
