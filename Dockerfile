@@ -1,6 +1,13 @@
-FROM python:2.7.18-stretch
+FROM dockette/debian:stretch-slim
 
 WORKDIR /app
+
 COPY . .
-RUN apt update && apt install -y python-webpy python-xmltodict python-requests python-xlsxwriter
+
+RUN <<EOF
+apt-get update
+apt-get install -y python python2.7-minimal python-webpy python-xmltodict python-requests python-xlsxwriter
+EOF
+
 CMD ["./bin/monit-dashboard.py"]
+
